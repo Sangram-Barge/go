@@ -5,9 +5,9 @@ import (
   "fmt"
 )
 
-func GetFirstNames(names []string) (firstNames []string) {
-  for _, name := range names {
-    firstNames = append(firstNames, strings.Fields(name)[0])
+func GetFirstNames(users []map[string]any) (firstNames []string) {
+  for _, user := range users {
+    firstNames = append(firstNames, user["firstName"].(string))
   }
   return firstNames
 }

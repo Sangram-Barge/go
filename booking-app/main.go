@@ -4,6 +4,7 @@ import (
   "fmt"
   "booking-app/helper"
   "booking-app/user"
+  "booking-app/tickets"
 )
 
 func main() {
@@ -14,7 +15,7 @@ func main() {
 
   helper.Greet(conferenceName, conferenceTickets, remainingTickets)
 
-  bookings := []string{}
+  bookings := []map[string]any{}
 
   for {
     firstName, lastName, isValid := user.GetUserName() 
@@ -37,9 +38,8 @@ func main() {
       helper.Line()
       continue
     }
-
-    remainingTickets -= userTickets
-    bookings = append(bookings, firstName + " " + lastName)
+    
+    remainingTickets, bookings = tickets.BookTicket(firstName, lastName, email, userTickets, remainingTickets, bookings)
 
     helper.ProvideConfirmation(firstName, lastName, email, userTickets, remainingTickets, conferenceName)
 
@@ -51,5 +51,8 @@ func main() {
       fmt.Println("We are full all tickets are booked, please come again next year")
       break
     }
+  }
+  for _, booking := range bookings {
+    fmt.Printf("last print %v\n", booking)
   }
 }
