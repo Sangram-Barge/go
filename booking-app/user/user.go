@@ -3,11 +3,19 @@ package user
 import (
   "strings"
   "fmt"
+  
 )
 
-func GetFirstNames(users []map[string]any) (firstNames []string) {
+type UserData struct {
+  FirstName string
+  LastName string
+  Email string
+  NumberOfTickets uint8
+}
+
+func GetFirstNames(users []UserData) (firstNames []string) {
   for _, user := range users {
-    firstNames = append(firstNames, user["firstName"].(string))
+    firstNames = append(firstNames, user.FirstName)
   }
   return firstNames
 }

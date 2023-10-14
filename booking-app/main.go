@@ -15,7 +15,7 @@ func main() {
 
   helper.Greet(conferenceName, conferenceTickets, remainingTickets)
 
-  bookings := []map[string]any{}
+  bookings := make([]user.UserData, 0)
 
   for {
     firstName, lastName, isValid := user.GetUserName() 

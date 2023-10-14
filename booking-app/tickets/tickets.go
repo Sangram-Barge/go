@@ -1,14 +1,18 @@
 package tickets
 
-func BookTicket(firstName string, lastName string, email string, userTickets uint8, remainingTickets uint8, bookings []map[string]any) (uint8, []map[string]any) {
+import (
+  "booking-app/user"
+)
+
+func BookTicket(firstName string, lastName string, email string, userTickets uint8, remainingTickets uint8, bookings []user.UserData) (uint8, []user.UserData) {
 
   remainingTickets -= userTickets
-  user := make(map[string]any)
+  userData := user.UserData {
+    FirstName: firstName,
+    LastName: lastName,
+    Email: email,
+    NumberOfTickets: userTickets ,
+  }
 
-  user["firstName"] = firstName
-  user["lastName"] = lastName
-  user["email"] = email
-  user["userTickets"] = userTickets
-
-  return remainingTickets, append(bookings, user)
+  return remainingTickets, append(bookings, userData)
 }
