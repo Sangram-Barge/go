@@ -22,6 +22,16 @@ func main() {
   totalArea := calculateTotalArea(&s, &s2, &rect1)
 
   fmt.Println("total area is", totalArea)
+
+
+  mulShape := shapes.MultiShape{
+    Shapes: []shapes.Shape{
+      &shapes.Circle{Radius: 3},
+    },
+  }
+
+  fmt.Println("multishape implementation total area", mulShape.Area())
+
 }
 
 func calculateTotalArea(shapess ...shapes.Shape) (total float64){
